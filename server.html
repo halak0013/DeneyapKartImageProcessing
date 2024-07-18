@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<head>
+  <!-- 42 69 73 6D 69 6C 6C 61 68 69 72 72 61 68 6D 69 6E 69 72 72 61 68 69 6D -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deneyap Kart Kamera</title>
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://cdn.deneyapkart.org/media-v2/site/HdRi1Q31FMoGDasUw6aEBdHh6n1EqFIX.png" />
+  <style>
+    body {
+      margin: 0;
+      background: #181818;
+      color: #EFEFEF;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #181818;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      height: 20px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .main-content {
+      display: flex;
+    }
+
+    .side {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .side.left {
+      text-align: left;
+    }
+
+    .side.right {
+      text-align: left;
+      margin-right: 30px;
+    }
+
+    .center {
+      flex: 2;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .bottom-content {
+      padding: 20px;
+      background-color: #181818;
+      border-top: 1px solid #202020;
+      text-align: center;
+    }
+
+    .bottom-content button {
+      margin: 0 10px;
+    }
+
+    .side button {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .side button:first-child {
+      margin-top: 10px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-wrap: nowrap;
+      line-height: 22px;
+      margin: 5px 0
+    }
+
+    .input-group>label {
+      display: inline-block;
+      padding-right: 10px;
+      min-width: 47%
+    }
+
+    .input-group input,
+    .input-group select {
+      flex-grow: 1
+    }
+
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 22px;
+      background: #36363600;
+      cursor: pointer;
+      margin: 0
+    }
+
+    input[type=range]:focus {
+      outline: 0
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: #EFEFEF;
+      border-radius: 0;
+      border: 0 solid #EFEFEF
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      border: 1px solid rgba(0, 0, 30, 0);
+      height: 22px;
+      width: 22px;
+      border-radius: 50px;
+      background: #ff3034;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -11.5px
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #EFEFEF
+    }
+
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: #EFEFEF;
+      border-radius: 0;
+      border: 0 solid #EFEFEF
+    }
+
+    input[type=range]::-moz-range-thumb {
+      border: 1px solid rgba(0, 0, 30, 0);
+      height: 22px;
+      width: 22px;
+      border-radius: 50px;
+      background: #ff3034;
+      cursor: pointer
+    }
+
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 2px;
+      cursor: pointer;
+      background: 0 0;
+      border-color: transparent;
+      color: transparent
+    }
+
+    input[type=range]::-ms-fill-lower {
+      background: #EFEFEF;
+      border: 0 solid #EFEFEF;
+      border-radius: 0
+    }
+
+    input[type=range]::-ms-fill-upper {
+      background: #EFEFEF;
+      border: 0 solid #EFEFEF;
+      border-radius: 0
+    }
+
+    input[type=range]::-ms-thumb {
+      border: 1px solid rgba(0, 0, 30, 0);
+      height: 22px;
+      width: 22px;
+      border-radius: 50px;
+      background: #ff3034;
+      cursor: pointer;
+      height: 2px
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+      background: #EFEFEF
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+      background: #363636
+    }
+
+
+    .switch {
+      display: block;
+      position: relative;
+      line-height: 22px;
+      font-size: 16px;
+      height: 22px
+    }
+
+    .switch input {
+      outline: 0;
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .slider {
+      width: 50px;
+      height: 22px;
+      border-radius: 22px;
+      cursor: pointer;
+      background-color: grey
+    }
+
+    .slider,
+    .slider:before {
+      display: inline-block;
+      transition: .4s
+    }
+
+    .slider:before {
+      position: relative;
+      content: "";
+      border-radius: 50%;
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      top: 3px;
+      background-color: #fff
+    }
+
+    input:checked+.slider {
+      background-color: #ff3034
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      transform: translateX(26px)
+    }
+
+    .range-max,
+    .range-min {
+      display: inline-block;
+      padding: 0 5px
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .face-item {
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 0 12px;
+      border: 0;
+      line-height: 28px;
+      cursor: pointer;
+      color: #fff;
+      background: #ff3034;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: 0
+    }
+
+    button:hover {
+      background: #ff494d
+    }
+
+    button:active {
+      background: #f21c21
+    }
+
+    button.disabled {
+      cursor: default;
+      background: #a0a0a0
+    }
+
+    .hidden {
+      display: none
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="https://cdn.deneyapkart.org/media-v2/site/KDHe2Dbb2czbdmNe2SyAWD0QbTsTTFzD.png" alt="Deneyap Kart"
+      class="logo">
+    <nav>
+      <a href="https://deneyapkart.org/projeler">Projeler</a>
+      <a href="https://deneyapkart.org/docs">Belgelendirme</a>
+      <a href="https://deneyapkart.org/iletisim">İletişim</a>
+    </nav>
+  </header>
+  <div class="main-content">
+    <div class="side left">
+      <div class="input-group" id="vflip-group">
+        <label for="vflip">Dikey Döndür</label>
+        <div class="switch">
+          <input id="vflip" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="vflip"></label>
+        </div>
+      </div>
+      <div class="input-group" id="hmirror-group">
+        <label for="hmirror">Yatay Döndür</label>
+        <div class="switch">
+          <input id="hmirror" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="hmirror"></label>
+        </div>
+      </div>
+      <div class="input-group" id="lenc-group">
+        <label for="lenc"
+          title="Merceğin neden olduğu görüntü bozulmalarını düzeltir. Bu, özellikle geniş açılı merceklerde görülen bozulmalar için kullanılır.">Mercek
+          Düzeltme</label>
+        <div class="switch">
+          <input id="lenc" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="lenc"></label>
+        </div>
+      </div>
+      <div class="input-group" id="dcw-group">
+        <label for="dcw"
+          title="Dynamic Cropping Window olarak da bilinir. Görüntüdeki gürültüyü azaltarak ve dinamik aralığı iyileştirerek görüntü kalitesini artırır.">DCW
+          (Küçült TR)</label>
+        <div class="switch">
+          <input id="dcw" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="dcw"></label>
+        </div>
+      </div>
+      <br><br>
+      <div class="input-group" id="aec-group">
+        <label for="aec"
+          title="Otomatik pozlama kontrolü sağlar. Bu sensör, ışık koşullarına göre pozlamayı ayarlar, böylece görüntü parlaklığı optimize edilir.">AEC
+          SENSÖRÜ </label>
+        <div class="switch">
+          <input id="aec" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="aec"></label>
+        </div>
+      </div>
+      <div class="input-group" id="aec2-group">
+        <label for="aec2"
+          title="Dijital sinyal işleme kullanarak otomatik pozlama kontrolü sağlar. Işık koşullarına göre pozlama ayarlarını dijital olarak yapar.">AEC
+          DSP</label>
+        <div class="switch">
+          <input id="aec2" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="aec2"></label>
+        </div>
+      </div>
+      <div class="input-group" id="agc-group">
+        <label for="agc"
+          title="Otomatik kazanç kontrolü sağlar. Kameranın çıkış sinyal seviyesini sabit tutmak için kazanç ayarını otomatik olarak yapar.">AGC</label>
+        <div class="switch">
+          <input id="agc" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="agc"></label>
+        </div>
+      </div>
+      <div class="input-group" id="bpc-group">
+        <label for="bpc"
+          title="Bozuk piksel düzeltmesi yapar. Görüntüdeki bozuk veya ölü pikselleri tespit eder ve düzeltir.">BPC</label>
+        <div class="switch">
+          <input id="bpc" type="checkbox" class="default-action">
+          <label class="slider" for="bpc"></label>
+        </div>
+      </div>
+      <div class="input-group" id="wpc-group">
+        <label for="wpc"
+          title="Beyaz piksel düzeltmesi yapar. Görüntüdeki aşırı parlak beyaz pikselleri tespit eder ve düzeltir.">WPC</label>
+        <div class="switch">
+          <input id="wpc" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="wpc"></label>
+        </div>
+      </div>
+      <div class="input-group" id="raw_gma-group">
+        <label for="raw_gma"
+          title="Ham görüntü verileri üzerinde gamma düzeltmesi yapar. Görüntünün kontrastını ve parlaklığını iyileştirir.">Raw
+          GMA</label>
+        <div class="switch">
+          <input id="raw_gma" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="raw_gma"></label>
+        </div>
+      </div>
+      <div class="input-group" id="awb-group">
+        <label for="awb"
+          title="Otomatik beyaz dengesi sağlar. Farklı ışık koşullarında renklerin doğru görünmesini sağlamak için beyaz dengesini otomatik olarak ayarlar.">AWB</label>
+        <div class="switch">
+          <input id="awb" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="awb"></label>
+        </div>
+      </div>
+      <div class="input-group" id="awb_gain-group">
+        <label for="awb_gain"
+          title="Otomatik beyaz dengesi kazancı. Beyaz dengesinin ayarlanması sırasında kazanç seviyelerini optimize eder.">AWB
+          Gain</label>
+        <div class="switch">
+          <input id="awb_gain" type="checkbox" class="default-action" checked="checked">
+          <label class="slider" for="awb_gain"></label>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+      <figure>
+        <div id="stream-container" class="image-container hidden">
+          <div class="close" id="close-stream">x</div>
+          <img id="stream" src="">
+        </div>
+      </figure>
+    </div>
+    <div class="side right">
+      <div class="input-group" id="quality-group">
+        <label for="quality">Kalite</label>
+        <div class="range-min">10</div>
+        <input type="range" id="quality" min="10" max="63" value="10" class="default-action">
+        <div class="range-max">63</div>
+      </div>
+      <div class="input-group" id="brightness-group">
+        <label for="brightness">Parlaklık</label>
+        <div class="range-min">-2</div>
+        <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
+        <div class="range-max">2</div>
+      </div>
+      <div class="input-group" id="contrast-group">
+        <label for="contrast">Karşıtlık</label>
+        <div class="range-min">-2</div>
+        <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
+        <div class="range-max">2</div>
+      </div>
+      <div class="input-group" id="saturation-group">
+        <label for="saturation">Doygunluk</label>
+        <div class="range-min">-2</div>
+        <input type="range" id="saturation" min="-2" max="2" value="0" class="default-action">
+        <div class="range-max">2</div>
+      </div>
+      <div class="input-group hidden" id="agc_gain-group">
+        <label for="agc_gain"
+          title="Kameranın düşük ışık koşullarında daha parlak görüntüler elde etmesini sağlar">Kazanç</label>
+        <div class="range-min">1x</div>
+        <input type="range" id="agc_gain" min="0" max="30" value="5" class="default-action">
+        <div class="range-max">31x</div>
+      </div>
+      <div class="input-group" id="gainceiling-group">
+        <label for="gainceiling"
+          title="Bu sınır, görüntü kalitesini korumak için kazancın belirli bir seviyenin üzerine çıkmasını engeller">Kazanç
+          Tavanı</label>
+        <div class="range-min">2x</div>
+        <input type="range" id="gainceiling" min="0" max="6" value="0" class="default-action">
+        <div class="range-max">128x</div>
+      </div>
+      <br><br>
+
+      <div class="input-group" id="framesize-group">
+        <label for="framesize">Çözünürlük</label>
+        <select id="framesize" class="default-action">
+          <option value="10">UXGA(1600x1200)</option>
+          <option value="9">SXGA(1280x1024)</option>
+          <option value="8">XGA(1024x768)</option>
+          <option value="7">SVGA(800x600)</option>
+          <option value="6">VGA(640x480)</option>
+          <option value="5" selected="selected">CIF(400x296)</option>
+          <option value="4">QVGA(320x240)</option>
+          <option value="3">HQVGA(240x176)</option>
+          <option value="0">QQVGA(160x120)</option>
+        </select>
+      </div>
+      <div class="input-group" id="special_effect-group">
+        <label for="special_effect">Özel Efekler</label>
+        <select id="special_effect" class="default-action">
+          <option value="0" selected="selected">Efek Yok</option>
+          <option value="1">Negatif</option>
+          <option value="2">Gri Tonlama</option>
+          <option value="3">Kırmızı Ton </option>
+          <option value="4">Yeşil Ton</option>
+          <option value="5">Mavi Ton</option>
+          <option value="6">Sepya</option>
+        </select>
+      </div>
+      <div class="input-group" id="wb_mode-group">
+        <label for="wb_mode">Işık Mod</label>
+        <select id="wb_mode" class="default-action">
+          <option value="0" selected="selected">Auto</option>
+          <option value="1">Güneşli</option>
+          <option value="2">Bulutlu</option>
+          <option value="3">Ofis</option>
+          <option value="4">Ev</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-content">
+    <section id="buttons">
+      <button id="get-still">Duraklat</button>
+      <button id="toggle-stream">Kamerayı Başlat</button>
+      <button id="face_enroll" class="disabled" disabled="disabled">Yüzü Kaydet</button>
+    </section>
+  </div>
+  <div class="container">
+    <div class="input-group" id="face_detect-group">
+      <label for="face_detect">Yüz Algılama</label>
+      <div class="switch">
+        <input id="face_detect" type="checkbox" class="default-action">
+        <label class="slider" for="face_detect"></label>
+      </div>
+    </div>
+    <div class="input-group" id="face_recognize-group">
+      <label for="face_recognize">Yüz Tanıma</label>
+      <div class="switch">
+        <input id="face_recognize" type="checkbox" class="default-action">
+        <label class="slider" for="face_recognize"></label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+      var baseHost = document.location.origin
+      var streamUrl = baseHost + ':81'
+
+      const hide = el => {
+        el.classList.add('hidden')
+      }
+      const show = el => {
+        el.classList.remove('hidden')
+      }
+
+      const disable = el => {
+        el.classList.add('disabled')
+        el.disabled = true
+      }
+
+      const enable = el => {
+        el.classList.remove('disabled')
+        el.disabled = false
+      }
+
+      const updateValue = (el, value, updateRemote) => {
+        updateRemote = updateRemote == null ? true : updateRemote
+        let initialValue
+        if (el.type === 'checkbox') {
+          initialValue = el.checked
+          value = !!value
+          el.checked = value
+        } else {
+          initialValue = el.value
+          el.value = value
+        }
+
+        if (updateRemote && initialValue !== value) {
+          updateConfig(el);
+        } else if (!updateRemote) {
+          if (el.id === "aec") {
+            value ? hide(exposure) : show(exposure)
+          } else if (el.id === "agc") {
+            if (value) {
+              show(gainCeiling)
+              hide(agcGain)
+            } else {
+              hide(gainCeiling)
+              show(agcGain)
+            }
+          } else if (el.id === "awb_gain") {
+            value ? show(wb) : hide(wb)
+          } else if (el.id === "face_recognize") {
+            value ? enable(enrollButton) : disable(enrollButton)
+          }
+        }
+      }
+
+      function updateConfig(el) {
+        let value
+        switch (el.type) {
+          case 'checkbox':
+            value = el.checked ? 1 : 0
+            break
+          case 'range':
+          case 'select-one':
+            value = el.value
+            break
+          case 'button':
+          case 'submit':
+            value = '1'
+            break
+          default:
+            return
+        }
+
+        const query = `${baseHost}/control?var=${el.id}&val=${value}`
+
+        fetch(query)
+          .then(response => {
+            console.log(`request to ${query} finished, status: ${response.status}`)
+          })
+      }
+
+      document
+        .querySelectorAll('.close')
+        .forEach(el => {
+          el.onclick = () => {
+            hide(el.parentNode)
+          }
+        })
+
+      // read initial values
+      fetch(`${baseHost}/status`)
+        .then(function (response) {
+          return response.json()
+        })
+        .then(function (state) {
+          document
+            .querySelectorAll('.default-action')
+            .forEach(el => {
+              updateValue(el, state[el.id], false)
+            })
+        })
+
+      const view = document.getElementById('stream')
+      const viewContainer = document.getElementById('stream-container')
+      const stillButton = document.getElementById('get-still')
+      const streamButton = document.getElementById('toggle-stream')
+      const enrollButton = document.getElementById('face_enroll')
+      const closeButton = document.getElementById('close-stream')
+
+      const stopStream = () => {
+        window.stop();
+        streamButton.innerHTML = 'Kamerayı Başlat'
+      }
+
+      const startStream = () => {
+        view.src = `${streamUrl}/stream`
+        show(viewContainer)
+        streamButton.innerHTML = 'Kamerayı Durdur'
+      }
+
+      // Attach actions to buttons
+      stillButton.onclick = () => {
+        stopStream()
+        view.src = `${baseHost}/capture?_cb=${Date.now()}`
+        show(viewContainer)
+      }
+
+      closeButton.onclick = () => {
+        stopStream()
+        hide(viewContainer)
+      }
+
+      streamButton.onclick = () => {
+        const streamEnabled = streamButton.innerHTML === 'Kamerayı Durdur'
+        if (streamEnabled) {
+          stopStream()
+        } else {
+          startStream()
+        }
+      }
+
+      enrollButton.onclick = () => {
+        updateConfig(enrollButton)
+      }
+
+      // Attach default on change action
+      document
+        .querySelectorAll('.default-action')
+        .forEach(el => {
+          el.onchange = () => updateConfig(el)
+        })
+
+      // Custom actions
+      // Gain
+      const agc = document.getElementById('agc')
+      const agcGain = document.getElementById('agc_gain-group')
+      const gainCeiling = document.getElementById('gainceiling-group')
+      agc.onchange = () => {
+        updateConfig(agc)
+        if (agc.checked) {
+          show(gainCeiling)
+          hide(agcGain)
+        } else {
+          hide(gainCeiling)
+          show(agcGain)
+        }
+      }
+
+      // Exposure
+      const aec = document.getElementById('aec')
+      const exposure = document.getElementById('aec_value-group')
+      aec.onchange = () => {
+        updateConfig(aec)
+        aec.checked ? hide(exposure) : show(exposure)
+      }
+
+      // AWB
+      const awb = document.getElementById('awb_gain')
+      const wb = document.getElementById('wb_mode-group')
+      awb.onchange = () => {
+        updateConfig(awb)
+        awb.checked ? show(wb) : hide(wb)
+      }
+
+      // Detection and framesize
+      const detect = document.getElementById('face_detect')
+      const recognize = document.getElementById('face_recognize')
+      const framesize = document.getElementById('framesize')
+
+      framesize.onchange = () => {
+        updateConfig(framesize)
+        if (framesize.value > 5) {
+          updateValue(detect, false)
+          updateValue(recognize, false)
+        }
+      }
+
+      detect.onchange = () => {
+        if (framesize.value > 5) {
+          alert("Bu özelliği etkinleştirmeden önce lütfen CIF veya daha düşük çözünürlük seçin!");
+          updateValue(detect, false)
+          return;
+        }
+        updateConfig(detect)
+        if (!detect.checked) {
+          disable(enrollButton)
+          updateValue(recognize, false)
+        }
+      }
+
+      recognize.onchange = () => {
+        if (framesize.value > 5) {
+          alert("Bu özelliği etkinleştirmeden önce lütfen CIF veya daha düşük çözünürlük seçin!");
+          updateValue(recognize, false);
+          return;
+        }
+        updateConfig(recognize)
+        if (recognize.checked) {
+          enable(enrollButton);
+          updateValue(detect, true);
+        } else {
+          disable(enrollButton);
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
